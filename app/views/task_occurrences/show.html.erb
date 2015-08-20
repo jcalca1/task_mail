@@ -1,0 +1,28 @@
+<div class="page-header">
+  <h3>Task Occurrence #<%= @task_occurrence.id %></h3>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <dl class="dl-horizontal">
+      <dt>Complete</dt>
+      <dd><%= @task_occurrence.complete %></dd>
+
+      <dt>Task</dt>
+      <dd><%= @task_occurrence.task_id %></dd>
+
+    </dl>
+
+    <div class="btn-group btn-group-justified">
+      <a href="/task_occurrences" class="btn btn-primary">
+        Back
+      </a>
+      <a href="/task_occurrences/<%= @task_occurrence.id %>/edit" class="btn btn-warning">
+        Edit
+      </a>
+      <a href="/delete_task_occurrence/<%= @task_occurrence.id %>" class="btn btn-danger" rel="nofollow">
+        Delete
+      </a>
+    </div>
+  </div>
+</div>

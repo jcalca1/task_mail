@@ -1,0 +1,58 @@
+<div class="page-header">
+  <h3>Task #<%= @task.id %></h3>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <dl class="dl-horizontal">
+      <dt>User</dt>
+      <dd><%= @task.user_id %></dd>
+
+      <dt>Email reminder repeat</dt>
+      <dd><%= @task.email_reminder_repeat %></dd>
+
+      <dt>Email reminder num</dt>
+      <dd><%= @task.email_reminder_num %></dd>
+
+      <dt>Email reminder</dt>
+      <dd><%= @task.email_reminder %></dd>
+
+      <dt>Recurrence end num</dt>
+      <dd><%= @task.recurrence_end_num %></dd>
+
+      <dt>Recurrence end period</dt>
+      <dd><%= @task.recurrence_end_period %></dd>
+
+      <dt>Recurrence frequency period</dt>
+      <dd><%= @task.recurrence_frequency_period %></dd>
+
+      <dt>Recurrence frequency num</dt>
+      <dd><%= @task.recurrence_frequency_num %></dd>
+
+      <dt>Recurrence</dt>
+      <dd><%= @task.recurrence %></dd>
+
+      <dt>Notes</dt>
+      <dd><%= @task.notes %></dd>
+
+      <dt>Date</dt>
+      <dd><%= @task.date %></dd>
+
+      <dt>Name</dt>
+      <dd><%= @task.name %></dd>
+
+    </dl>
+
+    <div class="btn-group btn-group-justified">
+      <a href="/tasks" class="btn btn-primary">
+        Back
+      </a>
+      <a href="/tasks/<%= @task.id %>/edit" class="btn btn-warning">
+        Edit
+      </a>
+      <a href="/delete_task/<%= @task.id %>" class="btn btn-danger" rel="nofollow">
+        Delete
+      </a>
+    </div>
+  </div>
+</div>
