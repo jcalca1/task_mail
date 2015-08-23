@@ -23,12 +23,16 @@ class TasksController < ApplicationController
     @task.recurrence_frequency_num = params[:recurrence_frequency_num]
     @task.recurrence = params[:recurrence]
     @task.notes = params[:notes]
-    @task.date = params[:date]
+    @task.date = Chronic.parse(params[:date])
     @task.name = params[:name]
+
+
+
+
 
     if @task.save
       redirect_to "/tasks", :notice => "Task created successfully."
-    else
+         else
       render 'new'
     end
   end

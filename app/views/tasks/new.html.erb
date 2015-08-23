@@ -1,11 +1,11 @@
 <!-- Validation failure messages -->
 <% if @task.errors.any? %>
-  <% @task.errors.full_messages.each do |message| %>
-    <div class="alert alert-dismissable alert-danger">
-      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-      <%= message %>
-    </div>
-  <% end %>
+<% @task.errors.full_messages.each do |message| %>
+<div class="alert alert-dismissable alert-danger">
+  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+  <%= message %>
+</div>
+<% end %>
 <% end %>
 
 <div class="page-header">
@@ -21,113 +21,127 @@
       <!-- Label and input for user_id -->
       <div class="form-group">
         <label for="user_id" class="control-label">
-          User
-        </label>
-
-        <input type="text" id="user_id" name="user_id" placeholder="User" class="form-control" value="<%= @task.user_id %>">
+                 </label>
+        <input type="hidden" id="user_id" name="user_id" placeholder="User" class="form-control" value="<%= @task.user_id %>">
       </div>
-
-      <!-- Label and input for email_reminder_repeat -->
-      <div class="checkbox">
-        <label for="email_reminder_repeat">
-          <input type="checkbox" id="email_reminder_repeat" name="email_reminder_repeat" value="1" <%= "checked" if @task.email_reminder_repeat %>>
-          Email reminder repeat
-        </label>
-      </div>
-
-      <!-- Label and input for email_reminder_num -->
-      <div class="form-group">
-        <label for="email_reminder_num" class="control-label">
-          Email reminder num
-        </label>
-
-        <input type="text" id="email_reminder_num" name="email_reminder_num" placeholder="Email reminder num" class="form-control" value="<%= @task.email_reminder_num %>">
-      </div>
-
-      <!-- Label and input for email_reminder -->
-      <div class="checkbox">
-        <label for="email_reminder">
-          <input type="checkbox" id="email_reminder" name="email_reminder" value="1" <%= "checked" if @task.email_reminder %>>
-          Email reminder
-        </label>
-      </div>
-
-      <!-- Label and input for recurrence_end_num -->
-      <div class="form-group">
-        <label for="recurrence_end_num" class="control-label">
-          Recurrence end num
-        </label>
-
-        <input type="text" id="recurrence_end_num" name="recurrence_end_num" placeholder="Recurrence end num" class="form-control" value="<%= @task.recurrence_end_num %>">
-      </div>
-
-      <!-- Label and input for recurrence_end_period -->
-      <div class="form-group">
-        <label for="recurrence_end_period" class="control-label">
-          Recurrence end period
-        </label>
-
-        <input type="text" id="recurrence_end_period" name="recurrence_end_period" placeholder="Recurrence end period" class="form-control" value="<%= @task.recurrence_end_period %>">
-      </div>
-
-      <!-- Label and input for recurrence_frequency_period -->
-      <div class="form-group">
-        <label for="recurrence_frequency_period" class="control-label">
-          Recurrence frequency period
-        </label>
-
-        <input type="text" id="recurrence_frequency_period" name="recurrence_frequency_period" placeholder="Recurrence frequency period" class="form-control" value="<%= @task.recurrence_frequency_period %>">
-      </div>
-
-      <!-- Label and input for recurrence_frequency_num -->
-      <div class="form-group">
-        <label for="recurrence_frequency_num" class="control-label">
-          Recurrence frequency num
-        </label>
-
-        <input type="text" id="recurrence_frequency_num" name="recurrence_frequency_num" placeholder="Recurrence frequency num" class="form-control" value="<%= @task.recurrence_frequency_num %>">
-      </div>
-
-      <!-- Label and input for recurrence -->
-      <div class="checkbox">
-        <label for="recurrence">
-          <input type="checkbox" id="recurrence" name="recurrence" value="1" <%= "checked" if @task.recurrence %>>
-          Recurrence
-        </label>
-      </div>
-
-      <!-- Label and input for notes -->
-      <div class="form-group">
-        <label for="notes" class="control-label">
-          Notes
-        </label>
-
-        <textarea id="notes" name="notes" placeholder="Notes" class="form-control" rows="3"><%= @task.notes %></textarea>
-      </div>
-
-      <!-- Label and input for date -->
-      <div class="form-group">
-        <label for="date" class="control-label">
-          Date
-        </label>
-
-        <input type="text" id="date" name="date" placeholder="Date" class="form-control" value="<%= @task.date %>">
-      </div>
-
       <!-- Label and input for name -->
       <div class="form-group">
-        <label for="name" class="control-label">
-          Name
-        </label>
+       <label for="name" class="control-label">Name</label>
+       <input type="text" id="name" name="name" placeholder="Name" class="form-control" value="<%= @task.name %>">
+     </div>
 
-        <input type="text" id="name" name="name" placeholder="Name" class="form-control" value="<%= @task.name %>">
-      </div>
 
-      <button class="btn btn-success">
-        Create Task
-      </button>
-      or
-      <a href="/tasks">Cancel</a>
-    </form>
-  </div>
+     <!-- Label and input for date -->
+     <div class="form-group">
+      <label for="date" class="control-label">
+        Start Date:
+      </label>
+      <input type="text" id="date" name="date" placeholder="Date" class="form-control" value="<%= @task.date %>">
+    </div>
+
+<div class='input-group date' id='datetimepicker1'>
+  <input type='text' class="form-control" name="date" id="date">
+  <span class="input-group-addon">
+    <span class="glyphicon glyphicon-calendar"></span>
+  </span>
 </div>
+
+<!-- Label and input for recurrence -->
+    <div class="checkbox">
+      <label for="recurrence">
+        <input type="checkbox" id="recurrence" name="recurrence" value="1" <%= "checked" if @task.recurrence %>>
+        Recurrence
+      </label>
+    </div>
+
+    <!-- Label and input for recurrence_end_num -->
+    <div class="form-group">
+      <label for="recurrence_end_num" class="control-label">
+        Recurrence end num
+      </label>
+
+      <input type="text" id="recurrence_end_num" name="recurrence_end_num" placeholder="Recurrence end num" class="form-control" value="<%= @task.recurrence_end_num %>">
+    </div>
+
+    <!-- Label and input for recurrence_end_period -->
+    <div class="form-group">
+      <label for="recurrence_end_period" class="control-label">
+        Recurrence end period
+      </label>
+
+      <input type="text" id="recurrence_end_period" name="recurrence_end_period" placeholder="Recurrence end period" class="form-control" value="<%= @task.recurrence_end_period %>">
+    </div>
+
+    <!-- Label and input for recurrence_frequency_period -->
+    <div class="form-group">
+      <label for="recurrence_frequency_period" class="control-label">
+        Recurrence frequency period
+      </label>
+
+      <input type="text" id="recurrence_frequency_period" name="recurrence_frequency_period" placeholder="Recurrence frequency period" class="form-control" value="<%= @task.recurrence_frequency_period %>">
+    </div>
+
+    <!-- Label and input for recurrence_frequency_num -->
+    <div class="form-group">
+      <label for="recurrence_frequency_num" class="control-label">
+        Recurrence frequency num
+      </label>
+
+      <input type="text" id="recurrence_frequency_num" name="recurrence_frequency_num" placeholder="Recurrence frequency num" class="form-control" value="<%= @task.recurrence_frequency_num %>">
+    </div>
+
+
+
+    <!-- Label and input for notes -->
+    <div class="form-group">
+      <label for="notes" class="control-label">
+        Notes
+      </label>
+
+      <textarea id="notes" name="notes" placeholder="Notes" class="form-control" rows="3"><%= @task.notes %></textarea>
+    </div>
+
+<!-- Label and input for email_reminder_repeat -->
+    <!-- <div class="checkbox">
+      <label for="email_reminder_repeat">
+        <input type="checkbox" id="email_reminder_repeat" name="email_reminder_repeat" value="1" <%= "checked" if @task.email_reminder_repeat %>>
+        Email reminder repeat
+      </label>
+    </div>
+
+    <!-- Label and input for email_reminder_num -->
+    <!--<div class="form-group">
+      <label for="email_reminder_num" class="control-label">
+        Email reminder num
+      </label>
+
+      <input type="text" id="email_reminder_num" name="email_reminder_num" placeholder="Email reminder num" class="form-control" value="<%= @task.email_reminder_num %>">
+    </div>
+
+    <!-- Label and input for email_reminder -->
+    <!--<div class="checkbox" type="hidden">
+      <label for="email_reminder" >
+        <input type="checkbox" id="email_reminder" name="email_reminder" value="1" <%= "checked" if @task.email_reminder %>>
+        Email reminder
+      </label>
+    </div>-->
+
+
+    <button class="btn btn-success">
+      Create Task
+    </button>
+    or
+    <a href="/tasks">Cancel</a>
+  </form>
+</div>
+</div>
+
+
+<script type="text/javascript">
+  $(function () {
+    $('#datetimepicker1').datetimepicker();
+  });
+</script>
+
+<!---end responsive panel example -->
+
