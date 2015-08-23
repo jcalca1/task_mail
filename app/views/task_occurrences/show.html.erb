@@ -8,9 +8,10 @@
       <dt>Complete</dt>
       <dd><%= @task_occurrence.complete %></dd>
 
-      <dt>Task</dt>
+      <dt>Task ID</dt>
       <dd><%= @task_occurrence.task_id %></dd>
-
+        <dt>Task Name</dt>
+      <dd><%= Task.find_by(:id => @task_occurrence.task_id).name %></dd>
     </dl>
 
     <div class="btn-group btn-group-justified">

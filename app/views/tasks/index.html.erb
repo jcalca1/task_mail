@@ -16,13 +16,15 @@
         <th>Recurrence</th>
  <th>Recurrence frequency period</th>
         <th>Recurrence frequency num</th>ddd
-
+ <!-- omit for now
         <th>Recurrence end num</th>
         <th>Recurrence end period</th>
          <th>Email reminder repeat</th>
         <th>Email reminder num</th>
         <th>Email reminder</th>
+         -->
         <th>Actions</th>
+
       </tr>
 
       <% @tasks.each do |task| %>
@@ -34,11 +36,13 @@
         <td><%= task.recurrence %></td>
         <td><%= task.recurrence_frequency_period %></td>
         <td><%= task.recurrence_frequency_num %></td>
+        <!-- omit for now
         <td><%= task.recurrence_end_num %></td>
-        <td><%= task.recurrence_end_period %></td> <td><%= task.email_reminder_repeat %></td>
+        <td><%= task.recurrence_end_period %></td> <td>
+        <%= task.email_reminder_repeat %></td>
         <td><%= task.email_reminder_num %></td>
         <td><%= task.email_reminder %></td>
-
+-->
 
 
         <td>

@@ -14,27 +14,24 @@
         <dt>Start Date</dt>
       <dd><%= @task.date %></dd>
 
-      <dt>Recurrence end num</dt>
-      <dd><%= @task.recurrence_end_num %></dd>
-
-      <dt>Recurrence end period</dt>
-      <dd><%= @task.recurrence_end_period %></dd>
-
+      <dt>Notes</dt>
+      <dd><%= @task.notes %></dd>
+ <dt>Recurrence</dt>
+      <dd><%= @task.recurrence %></dd>
       <dt>Recurrence frequency period</dt>
       <dd><%= @task.recurrence_frequency_period %></dd>
 
       <dt>Recurrence frequency num</dt>
       <dd><%= @task.recurrence_frequency_num %></dd>
 
-      <dt>Recurrence</dt>
-      <dd><%= @task.recurrence %></dd>
+<!--
+      <dt>Recurrence end num</dt>
+      <dd><%= @task.recurrence_end_num %></dd>
 
-      <dt>Notes</dt>
-      <dd><%= @task.notes %></dd>
+      <dt>Recurrence end period</dt>
+      <dd><%= @task.recurrence_end_period %></dd>
 
-
-
-<dt>Email reminder repeat</dt>
+      <dt>Email reminder repeat</dt>
       <dd><%= @task.email_reminder_repeat %></dd>
 
       <dt>Email reminder num</dt>
@@ -42,9 +39,28 @@
 
       <dt>Email reminder</dt>
       <dd><%= @task.email_reminder %></dd>
+-->
 
+<dt>Task Occurences</dt>
+<dd>
+<ul class="list-group">
+
+          <li class="list-group-item">
+date notes
+          </li>
+
+
+
+
+
+        </ul>
+    </dd>
 
     </dl>
+
+
+
+
 
     <div class="btn-group btn-group-justified">
       <a href="/tasks" class="btn btn-primary">

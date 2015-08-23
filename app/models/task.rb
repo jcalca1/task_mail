@@ -1,3 +1,4 @@
 class Task < ActiveRecord::Base
-  has_many:task_occurences
+validates :name, :presence => true, :uniqueness => { :scope => :date }
+  has_many :task_occurences
 end

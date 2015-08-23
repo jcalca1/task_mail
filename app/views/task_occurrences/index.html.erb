@@ -16,8 +16,10 @@
 
       <% @task_occurrences.each do |task_occurrence| %>
       <tr>
-        <td><%= task_occurrence.complete %></td>
+        <td><%= task_occurrence.complete%></td>
         <td><%= task_occurrence.task_id %></td>
+        <td><%= Task.find_by(:id => task_occurrence.task_id).name %></td>
+
         <td>
           <a href="/task_occurrences/<%= task_occurrence.id %>" class="btn btn-primary">Show</a>
           <a href="/task_occurrences/<%= task_occurrence.id %>/edit" class="btn btn-warning">Edit</a>

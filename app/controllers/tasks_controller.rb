@@ -31,6 +31,10 @@ class TasksController < ApplicationController
 
 
     if @task.save
+      @task_occurrence = TaskOccurrence.new
+    @task_occurrence.complete = false
+    @task_occurrence.task_id = @task.id
+    @task_occurrence.save
       redirect_to "/tasks", :notice => "Task created successfully."
          else
       render 'new'
