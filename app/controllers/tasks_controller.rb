@@ -26,10 +26,6 @@ class TasksController < ApplicationController
     @task.date = Chronic.parse(params[:date])
     @task.name = params[:name]
 
-
-
-
-
     if @task.save
       @task_occurrence = TaskOccurrence.new
     @task_occurrence.complete = false
@@ -43,6 +39,7 @@ class TasksController < ApplicationController
 
   def edit
     @task = Task.find(params[:id])
+
   end
 
   def update

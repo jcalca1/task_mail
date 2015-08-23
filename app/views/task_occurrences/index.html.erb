@@ -1,7 +1,7 @@
 <div class="page-header">
   <h1>
-    Task occurrences
-    <a href="/task_occurrences/new" class="btn btn-lg btn-success">New Task occurrence</a>
+    Task List
+    <a href="/tasks/new" class="btn btn-lg btn-success">New Task</a>
   </h1>
 </div>
 
@@ -11,6 +11,8 @@
       <tr>
         <th>Complete</th>
         <th>Task</th>
+        <th>Task</th>
+        <th>Date</th>
         <th>Actions</th>
       </tr>
 
@@ -19,7 +21,7 @@
         <td><%= task_occurrence.complete%></td>
         <td><%= task_occurrence.task_id %></td>
         <td><%= Task.find_by(:id => task_occurrence.task_id).name %></td>
-
+        <td><%= Task.find_by(:id => task_occurrence.task_id).date %></td>
         <td>
           <a href="/task_occurrences/<%= task_occurrence.id %>" class="btn btn-primary">Show</a>
           <a href="/task_occurrences/<%= task_occurrence.id %>/edit" class="btn btn-warning">Edit</a>
