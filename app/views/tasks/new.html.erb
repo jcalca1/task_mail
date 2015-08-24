@@ -52,30 +52,40 @@ Start Date:
     <div class="checkbox">
       <label for="recurrence">
         <input type="checkbox" id="recurrence" name="recurrence" value="1" <%= "checked" if @task.recurrence %>>
-        Recurrence
+        Repeat
       </label>
     </div>
-
-
-
-    <!-- Label and input for recurrence_frequency_period -->
     <div class="form-group">
       <label for="recurrence_frequency_period" class="control-label">
-        Recurrence frequency period
+        Frequency:
       </label>
 
-      <input type="text" id="recurrence_frequency_period" name="recurrence_frequency_period" placeholder="Recurrence frequency period" class="form-control" value="<%= @task.recurrence_frequency_period %>">
+      <select name="recurrence_frequency_period">
+<option value="daily">Daily</option>
+  <option value="weekly">Weekly</option>
+  <option selected value="monthy">Monthly</option>
+  <option value ="yearly">Yearly</option>
+</select>
+
     </div>
 
     <!-- Label and input for recurrence_frequency_num -->
     <div class="form-group">
       <label for="recurrence_frequency_num" class="control-label">
-        Recurrence frequency num
+        Every:
       </label>
 
       <input type="text" id="recurrence_frequency_num" name="recurrence_frequency_num" placeholder="Recurrence frequency num" class="form-control" value="<%= @task.recurrence_frequency_num %>">
     </div>
 
+<!-- Label and input for recurrence_end_num -->
+    <div class="form-group">
+      <label for="recurrence_end_num" class="control-label">
+        For
+      </label>
+
+      <input type="text" id="recurrence_end_num" name="recurrence_end_num" placeholder="Recurrence end num" class="form-control" value="<%= @task.recurrence_end_num %>">
+    </div>
 
 
     <!-- Label and input for notes -->
@@ -88,14 +98,7 @@ Start Date:
     </div>
 
 <!-- Label and input for email_reminder_repeat -->
-<!-- Label and input for recurrence_end_num
-    <div class="form-group">
-      <label for="recurrence_end_num" class="control-label">
-        Recurrence end num
-      </label>
 
-      <input type="text" id="recurrence_end_num" name="recurrence_end_num" placeholder="Recurrence end num" class="form-control" value="<%= @task.recurrence_end_num %>">
-    </div>
  -->
     <!-- Label and input for recurrence_end_period
     <div class="form-group">

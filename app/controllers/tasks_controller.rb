@@ -28,6 +28,9 @@ class TasksController < ApplicationController
 
 
     if @task.save
+      num = 0
+
+while num <= @task.recurrence_end_num task_occurence.each do |task_occurence|
       @task_occurrence = TaskOccurrence.new
     @task_occurrence.complete = 'false'
     @task_occurrence.task_next_num = 1.to_i
@@ -35,6 +38,8 @@ class TasksController < ApplicationController
     @task_occurrence.complete_date = 'nil'
        @task_occurrence.task_id = @task.id
     @task_occurrence.save
+  end
+
       redirect_to "/tasks", :notice => "Task created successfully."
          else
       render 'new'

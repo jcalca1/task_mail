@@ -44,9 +44,9 @@ class TaskOccurrencesController < ApplicationController
 
 
     if @task_occurrence.save
-      redirect_to :back, :notice => "Task occurrence updated successfully."
+      redirect_to "/task_occurrences" , :notice => "Task occurrence updated successfully."
     else
-      render 'edit'
+ render 'edit'
     end
 
 
