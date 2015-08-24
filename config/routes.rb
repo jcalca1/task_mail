@@ -33,6 +33,7 @@ Rails.application.routes.draw do
   get "/delete_task_occurrence/:id", :controller => "task_occurrences", :action => "destroy"
   #------------------------------
 
+
   devise_for :users
 root 'task_occurrences#index'
 

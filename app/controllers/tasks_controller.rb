@@ -26,10 +26,14 @@ class TasksController < ApplicationController
     @task.date = Chronic.parse(params[:date])
     @task.name = params[:name]
 
+
     if @task.save
       @task_occurrence = TaskOccurrence.new
     @task_occurrence.complete = false
-    @task_occurrence.task_id = @task.id
+    @task_occurrence.task_next_num = 1
+    @task_occurrence.task_next_date = Chronic.parse(@task.date)
+    @task_occurrence.complete_date = nil
+       @task_occurrence.task_id = @task.id
     @task_occurrence.save
       redirect_to "/tasks", :notice => "Task created successfully."
          else
@@ -39,6 +43,7 @@ class TasksController < ApplicationController
 
   def edit
     @task = Task.find(params[:id])
+
 
   end
 
