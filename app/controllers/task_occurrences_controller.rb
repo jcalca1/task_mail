@@ -31,10 +31,10 @@ class TaskOccurrencesController < ApplicationController
   def update
     @task_occurrence = TaskOccurrence.find(params[:id])
     @task_occurrence.task_id = params[:task_id]
-    @task_occurrence.complete = params[:complete]
-    @task_occurrence.task_next_num = params[:task_next_num]
+    @task_occurrence.complete = 'true'
+    @task_occurrence.task_next_num = 1
     @task_occurrence.task_next_date = params[:task_next_date]
-    @task_occurrence.complete_date = params[:complete_date]
+    @task_occurrence.complete_date = Time.now
 
     #if @task_occurence.complete == false
       #@task_occurence.complete = true

@@ -37,18 +37,20 @@
         <input type="text" id="task_id" name="task_id" placeholder="Task" class="form-control" value="<%= @task_occurrence.task_id %>">
       </div>
 
-    <!-- Label and input for task_id -->
+
       <div class="form-group">
-        <label for="task_id" class="control-label"><label>
-        <input type="hidden" id="complete_date" name="complete date" placeholder="" class="form-control" value="<%=Time.now.strftime("%m/%d/%Y") %>">
+        <label for="task_next_date" class="control-label">
+        </label>
+        <input type="hidden" id="task_next_date" name="task_next_date" placeholder="" class="form-control" value="<%= @task_occurrence.task_next_date %>">
       </div>
 
 
-              <button class="btn btn-success">
-          Complete
-        </button>
-        or
-        <a href="/task_occurrences/<%= @task_occurrence.id %>">Cancel</a>
-      </form>
-    </div>
+
+      <button class="btn btn-success">
+        Complete
+      </button>
+      or
+      <a href="/task_occurrences/<%= @task_occurrence.id %>">Cancel</a>
+    </form>
   </div>
+</div>
