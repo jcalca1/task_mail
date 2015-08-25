@@ -28,24 +28,38 @@ class TasksController < ApplicationController
 
 
     if @task.save
-      num = 0
-
+      num = 1
+      freq = @task.recurrence_frequency_period
+      every = @task.recurrence_frequency_num
+      long = @task.recurrence_end_num
+      date = @task.date
 
       while num <= @task.recurrence_end_num do
-        num += 1
         @task_occurrence = TaskOccurrence.new
         @task_occurrence.complete = 'false'
         @task_occurrence.task_next_num = num
-        @task_occurrence.task_next_date = @task.date
+        @task_occurrence.task_next_date = date
         @task_occurrence.complete_date = 'nil'
         @task_occurrence.task_id = @task.id
         @task_occurrence.save
+
+        num += 1
+if freq.to_s == "dailly"
+          date += 1.day
+       elsif freq.to_s == "weekly"
+          date += 1.week
+        elsif freq.to_s == "monthly"
+         date += 1.month
+        elsif freq.to_s == "yearly"
+          date += 1.year
+        end
       end
 
       redirect_to "/tasks", :notice => "Task created successfully."
     else
       render 'new'
     end
+
   end
 
   def edit
