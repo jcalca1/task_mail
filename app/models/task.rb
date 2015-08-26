@@ -9,4 +9,5 @@ class Task < ActiveRecord::Base
   end
 
   has_many :task_occurrences, :dependent => :destroy
+  belongs_to :users
 end
