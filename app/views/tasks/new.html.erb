@@ -21,7 +21,7 @@
       <!-- Label and input for user_id -->
       <div class="form-group">
         <label for="user_id" class="control-label">
-                 </label>
+        </label>
         <input type="hidden" id="user_id" name="user_id" placeholder="User" class="form-control" value="<%= @task.user_id %>">
       </div>
       <!-- Label and input for name -->
@@ -39,68 +39,78 @@
       </label>
       <input type="text" id="date" name="date" placeholder="Date" class="form-control" value="<%= @task.date %>">
     </div>
- -->
-Start Date:
-<div class='input-group date' id='datetimepicker1'>
-  <input type='text' class="form-control" name="date" id="date" placeholder="Date">
-  <span class="input-group-addon">
-    <span class="glyphicon glyphicon-calendar"></span>
-  </span>
+  -->
+  Start Date:
+  <div class='input-group date' id='datetimepicker1'>
+    <input type='text' class="form-control" name="date" id="date" placeholder="Date">
+    <span class="input-group-addon">
+      <span class="glyphicon glyphicon-calendar"></span>
+    </span>
+  </div>
+
+  <!-- Label and input for recurrence -->
+    <div class="control-group">
+    <div class="controls">
+
+        <input type="checkbox" data-toggle="collapse" data-target="#demo" id="recurrence" name="recurrence" value="1" <%= "checked" if @task.recurrence %>> Recurrence
+
+    </div>
+    <div class="controls">
+      <div id="demo" class="collapse out">
+
+        <div class="form-group">
+          <label for="recurrence_frequency_period" class="control-label">
+            Frequency:
+          </label>
+
+          <select name="recurrence_frequency_period" class="form-control">
+            <option value="daily">Daily</option>
+            <option value="weekly">Weekly</option>
+            <option selected value="monthly">Monthly</option>
+            <option value ="yearly">Yearly</option>
+          </select>
+
+        </div>
+
+        <!-- Label and input for recurrence_frequency_num -->
+        <div class="form-group">
+          <label for="recurrence_frequency_num" class="control-label">
+            Every:
+          </label>
+
+          <input type="text" id="recurrence_frequency_num" name="recurrence_frequency_num" placeholder="Recurrence frequency num" class="form-control" value="<%= @task.recurrence_frequency_num %>">
+        </div>
+
+        <!-- Label and input for recurrence_end_num -->
+        <div class="form-group">
+          <label for="recurrence_end_num" class="control-label">
+            For
+          </label>
+
+          <input type="text" id="recurrence_end_num" name="recurrence_end_num" placeholder="Recurrence end num" class="form-control" value="<%= @task.recurrence_end_num %>">
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+<!-- Label and input for notes -->
+<div class="form-group">
+  <label for="notes" class="control-label">
+    Notes
+  </label>
+
+  <textarea id="notes" name="notes" placeholder="Notes" class="form-control" rows="3"><%= @task.notes %></textarea>
 </div>
-
-<!-- Label and input for recurrence -->
-    <div class="checkbox">
-      <label for="recurrence">
-        <input type="checkbox" id="recurrence" name="recurrence" value="1" <%= "checked" if @task.recurrence %>>
-        Repeat
-      </label>
-    </div>
-    <div class="form-group">
-      <label for="recurrence_frequency_period" class="control-label">
-        Frequency:
-      </label>
-
-      <select name="recurrence_frequency_period" class="form-control">
-<option value="daily">Daily</option>
-  <option value="weekly">Weekly</option>
-  <option selected value="monthly">Monthly</option>
-  <option value ="yearly">Yearly</option>
-</select>
-
-    </div>
-
-    <!-- Label and input for recurrence_frequency_num -->
-    <div class="form-group">
-      <label for="recurrence_frequency_num" class="control-label">
-        Every:
-      </label>
-
-      <input type="text" id="recurrence_frequency_num" name="recurrence_frequency_num" placeholder="Recurrence frequency num" class="form-control" value="<%= @task.recurrence_frequency_num %>">
-    </div>
-
-<!-- Label and input for recurrence_end_num -->
-    <div class="form-group">
-      <label for="recurrence_end_num" class="control-label">
-        For
-      </label>
-
-      <input type="text" id="recurrence_end_num" name="recurrence_end_num" placeholder="Recurrence end num" class="form-control" value="<%= @task.recurrence_end_num %>">
-    </div>
-
-
-    <!-- Label and input for notes -->
-    <div class="form-group">
-      <label for="notes" class="control-label">
-        Notes
-      </label>
-
-      <textarea id="notes" name="notes" placeholder="Notes" class="form-control" rows="3"><%= @task.notes %></textarea>
-    </div>
 
 <!-- Label and input for email_reminder_repeat
 
 
-    <!-- Label and input for recurrence_end_period-->
+  <!-- Label and input for recurrence_end_period-->
     <!--<div class="form-group">
       <label for="recurrence_end_period" class="control-label">
         Recurrence end period
@@ -134,15 +144,6 @@ Start Date:
       </label>
     </div>-->
 
-
-    <button class="btn btn-success">
-      Create Task
-    </button>
-    or
-    <a href="/tasks">Cancel</a>
-  </form>
-</div>
-</div>
 
 
 <script type="text/javascript">
