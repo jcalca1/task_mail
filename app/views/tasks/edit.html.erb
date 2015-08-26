@@ -38,7 +38,7 @@
     </label>
     <div class='input-group date' id='datetimepicker1'>
 
-      <input type='text' class="form-control" name="date" id="date" placeholder="Date">
+      <input type='text' class="form-control" name="date" id="date" placeholder="Date" value="<%= @task.date %>">
       <span class="input-group-addon">
         <span class="glyphicon glyphicon-calendar"></span>
       </span>
@@ -137,7 +137,7 @@
       Update Task
     </button>
     or
-    <a href="/tasks/<%= @task.id %>">Cancel</a>
+    <a href="/tasks/">Cancel</a>
   </form>
 </div>
 </div>
