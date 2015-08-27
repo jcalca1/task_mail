@@ -19,13 +19,13 @@ class TasksController < ApplicationController
     @task.recurrence = params[:recurrence]
     @task.notes = params[:notes]
     if @task.recurrence == true
-    @task.recurrence_frequency_period = params[:recurrence_frequency_period]
-    @task.recurrence_frequency_num = params[:recurrence_frequency_num]
+      @task.recurrence_frequency_period = params[:recurrence_frequency_period]
+      @task.recurrence_frequency_num = params[:recurrence_frequency_num]
       @task.recurrence_end_num = params[:recurrence_end_num]
     else
       @task.recurrence = false
       @task.recurrence_frequency_period = ""
-    @task.recurrence_frequency_num = 1
+      @task.recurrence_frequency_num = 1
       @task.recurrence_end_num = 1
     end
 
@@ -79,7 +79,6 @@ end
 
 def update
   @task = Task.find(params[:id])
-
   @task.user_id = params[:user_id]
   @task.email_reminder_repeat = params[:email_reminder_repeat]
   @task.email_reminder_num = params[:email_reminder_num]
@@ -94,6 +93,40 @@ def update
   @task.name = params[:name]
 
   if @task.save
+   @task_occurrence.task.each do |task_occurrence|
+    if task_occurrence.complete == false
+      task_occurrence.destroy
+    else
+      num = 0
+      freq = @task.recurrence_frequency_period ##Daily, monthly, weekly
+      every = @task.recurrence_frequency_num ## Monthly every 3 Months
+      long = @task.recurrence_end_num ##number of occurrence
+      date = @task.date
+
+      while num < @task.recurrence_end_num do
+        @task_occurrence = TaskOccurrence.new
+        @task_occurrence.complete = 'false'
+        @task_occurrence.task_next_num = num
+        @task_occurrence.task_next_date = date
+        @task_occurrence.complete_date = 'nil'
+        @task_occurrence.task_id = @task.id
+        @task_occurrence.save
+
+        num += 1
+
+        if freq.to_s == "dailly"
+          date += every.day
+        elsif freq.to_s == "weekly"
+          date += every.week
+        elsif freq.to_s == "monthly"
+         date += every.month
+       elsif freq.to_s == "yearly"
+        date += every.year
+      end
+      end
+    end
+end
+
     redirect_to "/tasks", :notice => "Task updated successfully."
   else
     render 'edit'
