@@ -11,46 +11,72 @@
 
 
 <div class="page-header">
-  <h3>Confirm <%= @task_occurrence.id %></h3>
+  <h3>Complete - <%= @task_occurrence.task.name %></h3>
 </div>
 
 <div class="row">
-  <div class="col-md-12">
+  <div class="col-md-12" style="font-size: 16px;">
     <form action="/update_task_occurrence/<%= @task_occurrence.id %>" method="post">
       <!-- Hidden input for authenticity token to protect from forgery -->
       <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
 
       <!-- Label and input for complete -->
-      <div class="checkbox">
-        <label for="complete">
-          <input type="checkbox" id="complete" name="complete" value="true" >
-          Complete
-        </label>
+      <dl class="dl-horizontal">
+       <dt>Task Name:</dt>
+       <dd><%= @task_occurrence.task.name %></dd>
+       <dt>Due Date:</dt>
+         <dd><%= @task_occurrence.task.name %></dd>
+          <dt>Complete:</dt>
+          <dd><% if @task_occurrence.complete == true %>
+            Yes
+            <% else %>
+            No
+            <% end %>
+          </dd>
+          <dt>Complete Date:</dt>
+          <dd><%= @task_occurrence.complete_date %></dd>
+          <dt>Notes:</dt>
+          <dd>Need to add Notes field</dd>
+
+          <div class="form-group">
+            <label for="complete_date" class="control-label">
+            </label>
+            <input type="hidden" id="complete_date" name="complete_date" placeholder="" class="form-control" value="<%= @task_occurrence.complete_date %>">
+          </div>
+
+          <div class="form-group">
+            <label for="task_next_num" class="control-label">
+            </label>
+            <input type="hidden" id="task_next_num" name="task_next_num" placeholder="" class="form-control" value="<%= @task_occurrence.task_next_num %>">
+          </div>
+
+          <div class="form-group">
+            <label for="complete" class="control-label">
+            </label>
+            <input type="hidden" id="complete" name="complete" placeholder="" class="form-control" value="<%= @task_occurrence.complete %>">
+          </div>
+
+
+
+          <div class="form-group">
+            <label for="task_id" class="control-label">
+            </label>
+            <input type="hidden" id="task_id" name="task_id" placeholder="" class="form-control" value="<%= @task_occurrence.task_id %>">
+          </div>
+
+          <button class="btn btn-lg btn-success">
+            Complete
+          </button>
+
+          or
+          <a href="/task_occurrences/">Cancel</a>
+        </form>
       </div>
-
-      <!-- Label and input for task_id -->
-      <div class="form-group">
-        <label for="task_id" class="control-label">
-          Task
-        </label>
-
-        <input type="text" id="task_id" name="task_id" placeholder="Task" class="form-control" value="<%= @task_occurrence.task_id %>">
-      </div>
+    </div>
 
 
-      <div class="form-group">
-        <label for="task_next_date" class="control-label">
-        </label>
-        <input type="hidden" id="task_next_date" name="task_next_date" placeholder="" class="form-control" value="<%= @task_occurrence.task_next_date %>">
-      </div>
-
-
-
-      <button class="btn btn-success">
-        Complete
-      </button>
-      or
-      <a href="/task_occurrences/">Cancel</a>
-    </form>
-  </div>
-</div>
+    <script type="text/javascript">
+      $(function () {
+        $('#datetimepicker2').datetimepicker();
+      });
+    </script>

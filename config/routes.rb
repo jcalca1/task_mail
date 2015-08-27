@@ -28,6 +28,8 @@ Rails.application.routes.draw do
   # UPDATE
   get "/task_occurrences/:id/edit", :controller => "task_occurrences", :action => "edit"
   post "/update_task_occurrence/:id", :controller => "task_occurrences", :action => "update"
+  get "/update_task_occurrence/:id", :controller => "task_occurrences", :action => "update"
+  post "/done/:id", :controller => "task_occurrences", :action => "done"
 
   # DELETE
   get "/delete_task_occurrence/:id", :controller => "task_occurrences", :action => "destroy"

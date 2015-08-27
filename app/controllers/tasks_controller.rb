@@ -18,7 +18,6 @@ class TasksController < ApplicationController
     @task.date = Chronic.parse(params[:date])
     @task.recurrence = params[:recurrence]
     @task.notes = params[:notes]
-
     if @task.recurrence == true
     @task.recurrence_frequency_period = params[:recurrence_frequency_period]
     @task.recurrence_frequency_num = params[:recurrence_frequency_num]

@@ -7,37 +7,40 @@
 
 <!--past due-->
 
-Past Due
+<h3>Past Due</h3>
 <div class="row">
   <div class="col-md-12">
-    <table class="table table-bordered">
+    <table class="table table-striped table-hover"  style="font-size: 16px;">
       <tr>
-        <th></th>
-        <th>Status</th>
+        <th>Action</th>
         <th>Task Name</th>
-        <th>Next Num</th>
         <th>Due Date</th>
-        <th>Task ID</th>
+        <th>Status</th>
+        <th>Options</th>
+        <!-- <th>Next Num</th>
+                <th>Task ID</th>
         <th>Task Occurence ID</th>
         <th>Task Complete</th>
-        <th>Task Complete Date</th>
-        <th>Actions</th>
+        <th>Task Complete Date</th>-->
+
       </tr>
       <% @task_occurrences.order("task_next_date ASC").each do |task_occurrence| %>
       <% if task_occurrence.complete == false %>
-      <% if task_occurrence.task_next_date < Time.now %><!-- Past Due-->
+      <% if task_occurrence.task_next_date < Time.now %>   <!-- Past Due-->
       <tr>
        <td>
         <% if task_occurrence.complete == true %>
-        <a href="/task_occurrences/<%= task_occurrence.id %>/edit" class="btn btn-warning">
+        <a href="/task_occurrences/<%= task_occurrence.id %>/edit" class="btn btn-success  btn-sm">
           <i class="fa fa-check-square-o"></i>
         </a>
         <% else %>
-        <a href="/task_occurrences/<%= task_occurrence.id %>/edit" class="btn btn-success">
+        <a href="/task_occurrences/<%= task_occurrence.id %>/edit" class="btn btn-danger  btn-sm">
           <i class="fa fa-square-o"></i>
         </a>
         <% end %>
       </td>
+      <td><%= task_occurrence.task.name %></td>
+      <td><%= task_occurrence.task_next_date.strftime("%m/%d/%Y") %></td>
       <td><% if task_occurrence.complete == false  && task_occurrence.task_next_date <= Time.now%>
         <%= time_ago_in_words(task_occurrence.task_next_date) %> Past Due
         <% elsif  task_occurrence.complete == false %>
@@ -46,44 +49,42 @@ Past Due
         Complete!
         <% end %>
       </td>
-      <td><%= Task.find_by(:id => task_occurrence.task_id).name %></td>
-      <td><%= task_occurrence.task_next_num %></td>
-      <td><%= task_occurrence.task_next_date.strftime("%m/%d/%Y") %></td>
+     <!-- <td><%= task_occurrence.task_next_num %></td>
       <td><%= task_occurrence.task_id %></td>
       <td><%= task_occurrence.id %></td>
       <td><%= task_occurrence.complete%></td>
-      <td><%= task_occurrence.complete_date.try(:strftime, "%m/%d/%Y")%></td>
+      <td><%= task_occurrence.complete_date.try(:strftime, "%m/%d/%Y")%></td>-->
       <td>
-        <a href="/task_occurrences/<%= task_occurrence.id %>" class="btn btn-primary">Show</a>
-        <a href="/task_occurrences/<%= task_occurrence.id %>/edit" class="btn btn-warning">Edit</a>
-        <a href="/delete_task_occurrence/<%= task_occurrence.id %>" class="btn btn-danger" rel="nofollow">Delete</a>
+        <a href="/task_occurrences/<%= task_occurrence.id %>" class="btn btn-warning  btn-sm">Show</a>
+        <a href="/task_occurrences/<%= task_occurrence.id %>/edit" class="btn btn-warning  btn-sm">Edit</a>
+        <a href="/delete_task_occurrence/<%= task_occurrence.id %>" class="btn btn-danger  btn-sm" rel="nofollow">Delete</a>
       </td>
 
-    <%else%>
-    <%end%>
-    <%else%>
-    <%end%>
-    <%end%>
+      <%else%>
+      <%end%>
+      <%else%>
+      <%end%>
+      <%end%>
     </tr>
   </table>
 </div>
 </div>
 
-Today
+<h3>Today</h3>
 <div class="row">
   <div class="col-md-12">
-    <table class="table table-striped table-hover">
+    <table class="table table-striped table-hover" style="font-size: 16px;">
       <tr>
-        <th></th>
-        <th>Status</th>
+        <th>Action</th>
         <th>Task Name</th>
-        <th>Next Num</th>
         <th>Due Date</th>
+        <th>Status</th>
+        <th>Options</th>
+        <!-- <th>Next Num</th>
         <th>Task ID</th>
         <th>Task Occurence ID</th>
         <th>Task Complete</th>
-        <th>Task Complete Date</th>
-        <th>Actions</th>
+        <th>Task Complete Date</th>-->
       </tr>
       <% @task_occurrences.order("task_next_date ASC").each do |task_occurrence|  %>
       <% if task_occurrence.complete == false %>
@@ -91,15 +92,17 @@ Today
       <tr>
        <td>
         <% if task_occurrence.complete == true %>
-        <a href="/task_occurrences/<%= task_occurrence.id %>/edit" class="btn btn-warning">
+        <a href="/task_occurrences/<%= task_occurrence.id %>/edit" class="btn btn-success">
           <i class="fa fa-check-square-o"></i>
         </a>
         <% else %>
-        <a href="/task_occurrences/<%= task_occurrence.id %>/edit" class="btn btn-success">
+        <a href="/task_occurrences/<%= task_occurrence.id %>/edit" class="btn btn-primary">
           <i class="fa fa-square-o"></i>
         </a>
         <% end %>
       </td>
+      <td><%= Task.find_by(:id => task_occurrence.task_id).name %></td>
+      <td><%= task_occurrence.task_next_date.strftime("%m/%d/%Y") %></td>
       <td><% if task_occurrence.complete == false  && task_occurrence.task_next_date <= Time.now%>
         <%= time_ago_in_words(task_occurrence.task_next_date) %> Past Due
         <% elsif  task_occurrence.complete == false %>
@@ -108,44 +111,44 @@ Today
         Complete!
         <% end %>
       </td>
-      <td><%= Task.find_by(:id => task_occurrence.task_id).name %></td>
-      <td><%= task_occurrence.task_next_num %></td>
-      <td><%= task_occurrence.task_next_date.strftime("%m/%d/%Y") %></td>
+
+      <!--<td><%= task_occurrence.task_next_num %></td>
+
       <td><%= task_occurrence.task_id %></td>
       <td><%= task_occurrence.id %></td>
       <td><%= task_occurrence.complete%></td>
-      <td><%= task_occurrence.complete_date.try(:strftime, "%m/%d/%Y")%></td>
+      <td><%= task_occurrence.complete_date.try(:strftime, "%m/%d/%Y")%></td>-->
       <td>
-        <a href="/task_occurrences/<%= task_occurrence.id %>" class="btn btn-primary">Show</a>
-        <a href="/task_occurrences/<%= task_occurrence.id %>/edit" class="btn btn-warning">Edit</a>
-        <a href="/delete_task_occurrence/<%= task_occurrence.id %>" class="btn btn-danger" rel="nofollow">Delete</a>
+        <a href="/task_occurrences/<%= task_occurrence.id %>" class="btn btn-primary  btn-sm">Show</a>
+        <a href="/task_occurrences/<%= task_occurrence.id %>/edit" class="btn btn-warning btn-sm">Edit</a>
+        <a href="/delete_task_occurrence/<%= task_occurrence.id %>" class="btn btn-danger btn-sm" rel="nofollow">Delete</a>
       </td>
 
-    <%else%>
-    <%end%>
-    <%else%>
-    <%end%>
-    <%end%>
+      <%else%>
+       <%end%>
+      <%else%>
+      <%end%>
+      <%end%>
     </tr>
   </table>
 </div>
 </div>
 
-Upcoming
+<h3>Upcoming</h3>
 <div class="row">
   <div class="col-md-12">
-    <table class="table table-striped table-hover">
+    <table class="table table-striped table-hover" style="font-size: 16px;">
       <tr>
-        <th></th>
-        <th>Status</th>
-        <th>Task Name</th>
-        <th>Next Num</th>
-        <th>Due Date</th>
+       <th>Action</th>
+       <th>Task Name</th>
+       <th>Due Date</th>
+       <th>Status</th>
+       <th>Options</th>
+        <!-- <th>Next Num</th>
         <th>Task ID</th>
         <th>Task Occurence ID</th>
         <th>Task Complete</th>
-        <th>Task Complete Date</th>
-        <th>Actions</th>
+        <th>Task Complete Date</th>-->
       </tr>
       <% @task_occurrences.order("task_next_date ASC").each do |task_occurrence| %>
       <% if task_occurrence.complete == false %>
@@ -153,15 +156,17 @@ Upcoming
       <tr>
        <td>
         <% if task_occurrence.complete == true %>
-        <a href="/task_occurrences/<%= task_occurrence.id %>/edit" class="btn btn-warning">
+        <a href="/task_occurrences/<%= task_occurrence.id %>/edit" class="btn btn-success btn-sm">
           <i class="fa fa-check-square-o"></i>
         </a>
         <% else %>
-        <a href="/task_occurrences/<%= task_occurrence.id %>/edit" class="btn btn-success">
+        <a href="/task_occurrences/<%= task_occurrence.id %>/edit" class="btn btn-warning btn-sm">
           <i class="fa fa-square-o"></i>
         </a>
         <% end %>
       </td>
+      <td><%= Task.find_by(:id => task_occurrence.task_id).name %></td>
+      <td><%= task_occurrence.task_next_date.strftime("%m/%d/%Y") %></td>
       <td><% if task_occurrence.complete == false  && task_occurrence.task_next_date <= Time.now%>
         <%= time_ago_in_words(task_occurrence.task_next_date) %> Past Due
         <% elsif  task_occurrence.complete == false %>
@@ -170,24 +175,22 @@ Upcoming
         Complete!
         <% end %>
       </td>
-      <td><%= Task.find_by(:id => task_occurrence.task_id).name %></td>
-      <td><%= task_occurrence.task_next_num %></td>
-      <td><%= task_occurrence.task_next_date.strftime("%m/%d/%Y") %></td>
-      <td><%= task_occurrence.task_id %></td>
+         <!--<td><%= task_occurrence.task_next_num %></td>
+            <td><%= task_occurrence.task_id %></td>
       <td><%= task_occurrence.id %></td>
       <td><%= task_occurrence.complete%></td>
-      <td><%= task_occurrence.complete_date.try(:strftime, "%m/%d/%Y")%></td>
+      <td><%= task_occurrence.complete_date.try(:strftime, "%m/%d/%Y")%></td>-->
       <td>
-        <a href="/task_occurrences/<%= task_occurrence.id %>" class="btn btn-primary">Show</a>
-        <a href="/task_occurrences/<%= task_occurrence.id %>/edit" class="btn btn-warning">Edit</a>
-        <a href="/delete_task_occurrence/<%= task_occurrence.id %>" class="btn btn-danger" rel="nofollow">Delete</a>
+        <a href="/task_occurrences/<%= task_occurrence.id %>" class="btn btn-primary  btn-sm">Show</a>
+        <a href="/task_occurrences/<%= task_occurrence.id %>/edit" class="btn btn-info  btn-sm">Edit</a>
+        <a href="/delete_task_occurrence/<%= task_occurrence.id %>" class="btn btn-danger  btn-sm" rel="nofollow">Delete</a>
       </td>
 
-    <%else%>
-    <%end%>
-    <%else%>
-    <%end%>
-    <%end%>
+      <%else%>
+      <%end%>
+      <%else%>
+      <%end%>
+      <%end%>
     </tr>
   </table>
 </div>

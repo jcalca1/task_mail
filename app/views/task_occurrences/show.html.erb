@@ -1,46 +1,53 @@
 <div class="page-header">
-  <h3>Task Occurrence #<%= @task_occurrence.id %></h3>
+  <h3>Viewing - <%= @task_occurrence.task.name %></h3>
 </div>
 
 <div class="row">
   <div class="col-md-12">
     <dl class="dl-horizontal">
-      <dt>Task Name</dt>
-      <!--<dd><= @task_occurrence.task.id %></dd>-->
-      <dt>Task Name</dt>
-      <dd><%= @task_occurrence.task.name %></dd>
-      <dt>Task ID</dt>
-      <dd><%= @task_occurrence.task_id %></dd>
-      <dt>Complete</dt>
-      <dd><%= @task_occurrence.complete %></dd>
-
-
-
-
-      <dt>Completed Events</dt>
-      <dd>
-        <ul class="list-group">
-          <% @task_occurrence.task.task_occurrences.order("task_next_date ASC").each do |task_occurrence| %>
-          <% if task_occurrence.complete == true %>
-          <li> <%= task_occurrence.task_id %>Completed on <%= task_occurrence.complete_date %></li>
+     <dt>Task Name:</dt>
+     <dd><%= @task_occurrence.task.name %></dd>
+     <dt>Task Name:</dt>
+     <dd><%= @task_occurrence.task_next_date %></dd>
+      <dt>Complete:</dt>
+     <dd><% if @task_occurrence.complete == true %>
+      Yes
+      <% else %>
+      No
+      <% end %>
+    </dd>
+    <dt>Complete Date:</dt>
+    <dd><%= @task_occurrence.complete_date %></dd>
+    <dt>Notes:</dt>
+     <dd>Need to add Notes field</dd>
+    <dt>Log:</dt>
+    <dd>
+      <ul class="list-group">
+        <% @task_occurrence.task.task_occurrences.order("task_next_date ASC").each do |task_occurrence| %>
+        <% if task_occurrence.complete == true %>
+        <li class="list-group-item">Completed on <%= task_occurrence.complete_date.strftime("%m/%d/%Y") %>  <a href="/task_occurrences/<%= task_occurrence.id %>" class="btn-primary"> Show </a>
+          <a href="/task_occurrences/<%= task_occurrence.id %>/edit" class="btn-warning"> Edit </a>
+          <a href="/delete_task_occurrence/<%= task_occurrence.id %>" class="btn-danger" rel="nofollow"> Delete </a></li>
           <%else%>
-          <li><%= task_occurrence.task_id %>Due5 on<%= task_occurrence.task_next_date %></li>
-          <% end %>
-          <% end %>
-        </ul>
-      </dd>
-    </dl>
+          <li class="list-group-item"><%= task_occurrence.task.name %> is due on <%= task_occurrence.task_next_date.strftime("%m/%d/%Y") %>  <a href="/task_occurrences/<%= task_occurrence.id %>" class="fa fa-eye"> </a>
+            <a href="/task_occurrences/<%= task_occurrence.id %>/edit" class="fa fa-pencil"></a>
+            <a href="/delete_task_occurrence/<%= task_occurrence.id %>" rel="nofollow" class="fa fa-trash"></a></li>
+            <% end %>
+            <% end %>
+          </ul>
+        </dd>
+      </dl>
 
-    <div class="btn-group btn-group-justified">
-      <a href="/task_occurrences" class="btn btn-primary">
-        Back
-      </a>
-      <a href="/task_occurrences/<%= @task_occurrence.id %>/edit" class="btn btn-warning">
-        Edit
-      </a>
-      <a href="/delete_task_occurrence/<%= @task_occurrence.id %>" class="btn btn-danger" rel="nofollow">
-        Delete
-      </a>
+      <div class="btn-group btn-group-justified">
+        <a href="/task_occurrences" class="btn btn-primary">
+          Back
+        </a>
+        <a href="/task_occurrences/<%= @task_occurrence.id %>/edit" class="btn btn-warning">
+          Edit
+        </a>
+        <a href="/delete_task_occurrence/<%= @task_occurrence.id %>" class="btn btn-danger" rel="nofollow">
+          Delete
+        </a>
+      </div>
     </div>
   </div>
-</div>
