@@ -5,13 +5,30 @@
 <div class="row">
   <div class="col-md-12">
     <dl class="dl-horizontal">
+      <dt>Task Name</dt>
+      <!--<dd><= @task_occurrence.task.id %></dd>-->
+      <dt>Task Name</dt>
+      <dd><%= @task_occurrence.task.name %></dd>
+      <dt>Task ID</dt>
+      <dd><%= @task_occurrence.task_id %></dd>
       <dt>Complete</dt>
       <dd><%= @task_occurrence.complete %></dd>
 
-      <dt>Task ID</dt>
-      <dd><%= @task_occurrence.task_id %></dd>
-        <dt>Task Name</dt>
-      <dd><%= Task.find_by(:id => @task_occurrence.task_id).name %></dd>
+
+
+
+      <dt>Completed Events</dt>
+      <dd>
+        <ul class="list-group">
+          <% @task_occurrence.task.task_occurrences.order("task_next_date ASC").each do |task_occurrence| %>
+          <% if task_occurrence.complete == true %>
+          <li> <%= task_occurrence.task_id %>Completed on <%= task_occurrence.complete_date %></li>
+          <%else%>
+          <li><%= task_occurrence.task_id %>Due5 on<%= task_occurrence.task_next_date %></li>
+          <% end %>
+          <% end %>
+        </ul>
+      </dd>
     </dl>
 
     <div class="btn-group btn-group-justified">

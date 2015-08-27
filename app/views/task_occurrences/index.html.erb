@@ -10,7 +10,7 @@
 Past Due
 <div class="row">
   <div class="col-md-12">
-    <table class="table table-striped table table-bordered">
+    <table class="table table-bordered">
       <tr>
         <th></th>
         <th>Status</th>
@@ -85,7 +85,7 @@ Today
         <th>Task Complete Date</th>
         <th>Actions</th>
       </tr>
-      <% @task_occurrences.each do |task_occurrence| %>
+      <% @task_occurrences.order("task_next_date ASC").each do |task_occurrence|  %>
       <% if task_occurrence.complete == false %>
       <% if task_occurrence.task_next_date == Time.now %><!-- Past Due-->
       <tr>
@@ -147,7 +147,7 @@ Upcoming
         <th>Task Complete Date</th>
         <th>Actions</th>
       </tr>
-      <% @task_occurrences.each do |task_occurrence| %>
+      <% @task_occurrences.order("task_next_date ASC").each do |task_occurrence| %>
       <% if task_occurrence.complete == false %>
       <% if task_occurrence.task_next_date > Time.now %><!-- Past Due-->
       <tr>
