@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150828173405) do
+ActiveRecord::Schema.define(version: 20150828064640) do
 
   create_table "task_occurrences", force: :cascade do |t|
     t.boolean  "complete"
@@ -23,10 +23,10 @@ ActiveRecord::Schema.define(version: 20150828173405) do
     t.datetime "task_next_date"
     t.datetime "complete_date"
     t.text     "task_notes"
-    t.string   "user_id"
   end
 
   create_table "tasks", force: :cascade do |t|
+    t.integer  "user_id"
     t.boolean  "email_reminder_repeat"
     t.integer  "email_reminder_num"
     t.boolean  "email_reminder"
