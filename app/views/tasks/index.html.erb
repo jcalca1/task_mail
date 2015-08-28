@@ -11,11 +11,11 @@
       <tr>
         <th>User2</th>
          <th>Name</th>
-         <th>Date</th>
-          <th>Notes</th>
-        <th>Recurrence</th>
- <th>Recurrence frequency period</th>
-        <th>Recurrence frequency num</th>
+         <th>Start Date</th>
+            <th>Recurrence</th>
+ <th>Frequency</th>
+        <th>Every</th>
+          <th>Recurring</th>
  <!-- omit for now
         <th>Recurrence end num</th>
         <th>Recurrence end period</th>
@@ -31,11 +31,11 @@
       <tr>
         <td><%= task.id %></td>
          <td><%= task.name %></td>
-         <td><%= task.date %></td>
-          <td><%= task.notes %></td>
+         <td><%= task.date.strftime("%m/%d/%Y")  %></td>
         <td><%= task.recurrence %></td>
         <td><%= task.recurrence_frequency_period %></td>
         <td><%= task.recurrence_frequency_num %></td>
+        <td><%= task.recurrence_end_num %> time(s)</td>
 
         <!-- omit for now
         <td><%= task.recurrence_end_num %></td>
