@@ -33,7 +33,6 @@ def update
     @task_occurrence.complete = 'true'
     @task_occurrence.task_next_num = params[:task_next_num]
     @task_occurrence.task_next_date = params[:task_next_date]
-      @task_occurrence.task_notes = params[:task_notes]
     @task_occurrence.complete_date = Time.now
 
     if @task_occurrence.save

@@ -1,32 +1,32 @@
 <div class="page-header">
-  <h3>Showing - <%= @task.name %></h3>
+  <h3>Task #<%= @task.id %></h3>
 </div>
 
 <div class="row">
   <div class="col-md-12">
     <dl class="dl-horizontal">
-     <dt>Start Date:</dt>
-     <dd><%= @task.date.strftime("%m/%d/%Y") %></dd>
+      <dt>User</dt>
+      <dd><%= @task.user_id %></dd>
+
+      <dt>Name</dt>
+      <dd><%= @task.name %></dd>
+
+        <dt>Start Date</dt>
+      <dd><%= @task.date %></dd>
+
+      <dt>Notes</dt>
+      <dd><%= @task.notes %></dd>
+ <dt>Recurrence</dt>
+      <dd><%= @task.recurrence %></dd>
+      <dt>Recurrence frequency period</dt>
+      <dd><%= @task.recurrence_frequency_period %></dd>
+
+      <dt>Recurrence frequency num</dt>
+      <dd><%= @task.recurrence_frequency_num %></dd>
 
 
-     <dt>Recurrence:</dt>
-     <dd><%= @task.recurrence %></dd>
-     <dt>Frequency:</dt>
-     <dd><%= @task.recurrence_frequency_period %></dd>
-     <dt>Every:</dt>
-     <dd><%= @task.recurrence_frequency_num %>
-     <% if @task.recurrence_frequency_period == "daily"%>
-        day(s)
-      <% elsif @task.recurrence_frequency_period == "weekly"%>
-        week(s)
-      <% elsif @task.recurrence_frequency_period == "monthly"%>
-        month(s)
-      <% else @task.recurrence_frequency_period == "yearly"%>
-        year(s)
-        <% end %>
-      </dd>
-      <dt>Repeating:</dt>
-      <dd><%= @task.recurrence_end_num %> times</dd>
+      <dt>Recurrence end num</dt>
+      <dd><%= @task.recurrence_end_num %></dd>
 <!--
       <dt>Recurrence end period</dt>
       <dd><%= @task.recurrence_end_period %></dd>
@@ -39,32 +39,46 @@
 
       <dt>Email reminder</dt>
       <dd><%= @task.email_reminder %></dd>
-    -->
-    <dt>Notes:</dt>
-    <dd><%= @task.notes %></dd>
+-->
+
+<dt>Task Occurences</dt>
+<dd>
+<ul class="list-group">
+
+          <li class="list-group-item">
+date notes
+          </li>
+
+
+
+
+
+        </ul>
+    </dd>
     <dt>Log:</dt>
     <dd>
       <ul class="list-group">
         <% @task.task_occurrences.order("task_next_date ASC").each do |task_occurrence| %>
         <% if task_occurrence.complete == true %>
-        <li class="list-group-item">Completed on <%= task_occurrence.complete_date.strftime("%m/%d/%Y") %> Note: <%= task_occurrence.task_notes %> <a href="/task_occurrences/<%= task_occurrence.id %>" class="btn-xs btn-primary">Show</a>
-
-          <a href="/delete_task_occurrence/<%= task_occurrence.id %>" class="btn-xs btn-danger" rel="nofollow">Delete</a></li>
+        <li class="list-group-item">Completed on <%= task_occurrence.complete_date.strftime("%m/%d/%Y") %>  <a href="/task_occurrences/<%= task_occurrence.id %>" class="btn-primary"> Show </a>
+          <a href="/task_occurrences/<%= task_occurrence.id %>/edit" class="btn-warning"> Edit </a>
+          <a href="/delete_task_occurrence/<%= task_occurrence.id %>" class="btn-danger" rel="nofollow"> Delete </a></li>
           <%else%>
-          <li class="list-group-item"><a href="/task_occurrences/<%= task_occurrence.id %>/edit" class="btn-xs btn-success"> <i class="fa fa-square-o"></i></a>Due on <%= task_occurrence.task_next_date.strftime("%m/%d/%Y") %>  <a href="/task_occurrences/<%= task_occurrence.id %>" class="btn-xs btn-primary">Show</a>
-           <a href="/delete_task_occurrence/<%= task_occurrence.id %>" rel="nofollow" class="btn-xs btn-danger">Delete</a></li>
-           <% end %>
-           <% end %>
-         </ul>
-       </dd>
+          <li class="list-group-item"><%= task_occurrence.task.name %> is due on <%= task_occurrence.task_next_date.strftime("%m/%d/%Y") %>  <a href="/task_occurrences/<%= task_occurrence.id %>" class="fa fa-eye"> </a>
+            <a href="/task_occurrences/<%= task_occurrence.id %>/edit" class="fa fa-pencil"></a>
+            <a href="/delete_task_occurrence/<%= task_occurrence.id %>" rel="nofollow" class="fa fa-trash"></a></li>
+            <% end %>
+            <% end %>
+          </ul>
+        </dd>
 
-     </dl>
-
-
-
+    </dl>
 
 
-     <div class="btn-group btn-group-justified">
+
+
+
+    <div class="btn-group btn-group-justified">
       <a href="/tasks" class="btn btn-primary">
         Back
       </a>

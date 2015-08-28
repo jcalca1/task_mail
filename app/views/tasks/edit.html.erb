@@ -56,10 +56,10 @@
         Frequency:
       </label>
       <select name="recurrence_frequency_period"  class="form-control">
-        <option <%= "selected" if @task.recurrence_frequency_period=="daily" %> value="daily">Daily</option>
-        <option <%= "selected" if @task.recurrence_frequency_period=="weekly" %> value="weekly">Weekly</option>
-        <option <%= "selected" if @task.recurrence_frequency_period=="monthly" %> value="monthly">Monthly</option>
-        <option <%= "selected" if @task.recurrence_frequency_period=="yearly" %> value ="yearly">Yearly</option>
+        <option value="daily">Daily</option>
+        <option value="weekly">Weekly</option>
+        <option selected value="monthly">Monthly</option>
+        <option value ="yearly">Yearly</option>
       </select>
     </div>
 
@@ -129,7 +129,7 @@
       Update Task(s)
     </button>
     or
-    <a href="/task_occurrences/">Cancel</a>
+    <a href="/tasks/">Cancel</a>
   </form>
 </div>
 </div>
