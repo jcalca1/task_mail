@@ -13,7 +13,6 @@ class TasksController < ApplicationController
 
  def create
       @task = Task.new
-      @task.user_id = params[:user_id]
       @task.name = params[:name]
       @task.date = Chronic.parse(params[:date])
       @task.recurrence = params[:recurrence]
@@ -40,7 +39,7 @@ class TasksController < ApplicationController
       date = @task.date
       while num < @task.recurrence_end_num do
        @task_occurrence = TaskOccurrence.new
-       @task_occurrence.complete = 'false'
+        @task_occurrence.user_id = params[:x]
        @task_occurrence.task_next_num = num
        @task_occurrence.task_next_date = date
        @task_occurrence.complete_date = 'nil'
@@ -70,8 +69,7 @@ end
 
 def update #
    @task = Task.find(params[:id])
-   @task.user_id = params[:user_id]
-   @task.email_reminder_repeat = params[:email_reminder_repeat]
+    @task.email_reminder_repeat = params[:email_reminder_repeat]
    @task.email_reminder_num = params[:email_reminder_num]
    @task.email_reminder = params[:email_reminder]
    @task.notes = params[:notes]
@@ -109,6 +107,7 @@ def update #
                         date = @task.date
                         while num < @task.recurrence_end_num do
                            @task_occurrence = TaskOccurrence.new
+                            @task_occurrence.user_id = current_user.id
                            @task_occurrence.complete = 'false'
                            @task_occurrence.task_next_num = num
                            @task_occurrence.task_next_date = date
