@@ -45,6 +45,7 @@ class TasksController < ApplicationController
             @task_occurrence.task_notes = @task.notes
        @task_occurrence.complete_date = 'nil'
        @task_occurrence.task_id = @task.id
+       @task_occurrence.user_id = params[:user_id]
        @task_occurrence.save
        num += 1
        if freq.to_s == "dailly"
