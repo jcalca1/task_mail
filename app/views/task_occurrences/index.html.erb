@@ -55,8 +55,8 @@
       <td><%= task_occurrence.complete%></td>
       <td><%= task_occurrence.complete_date.try(:strftime, "%m/%d/%Y")%></td>-->
       <td>
-        <a href="/task_occurrences/<%= task_occurrence.id %>" class="btn btn-warning  btn-sm">Show</a>
-        <a href="/tasks/<%= task_occurrence.task_id %>/edit" class="btn btn-warning  btn-sm">Edit</a>
+   <a href="/task_occurrences/<%= task_occurrence.id %>" class="btn btn-primary  btn-sm">Show</a>
+        <a href="/tasks/<%= task_occurrence.id %>/edit" class="btn btn-info  btn-sm">Edit</a>
         <a href="/delete_task_occurrence/<%= task_occurrence.id %>" class="btn btn-danger  btn-sm" rel="nofollow">Delete</a>
       </td>
 
@@ -92,11 +92,11 @@
       <tr>
        <td>
         <% if task_occurrence.complete == true %>
-        <a href="/task_occurrences/<%= task_occurrence.id %>/edit" class="btn btn-success">
+        <a href="/task_occurrences/<%= task_occurrence.id %>/edit" class="btn btn-success btn-sm">
           <i class="fa fa-check-square-o"></i>
         </a>
         <% else %>
-        <a href="/task_occurrences/<%= task_occurrence.id %>/edit" class="btn btn-primary">
+        <a href="/task_occurrences/<%= task_occurrence.id %>/edit" class="btn btn-primary btn-sm">
           <i class="fa fa-square-o"></i>
         </a>
         <% end %>
@@ -119,9 +119,9 @@
       <td><%= task_occurrence.complete%></td>
       <td><%= task_occurrence.complete_date.try(:strftime, "%m/%d/%Y")%></td>-->
       <td>
-        <a href="/task_occurrences/<%= task_occurrence.id %>" class="btn btn-primary  btn-sm">Show</a>
-        <a href="/tasks/<%= task_occurrence.task_id %>/edit" class="btn btn-warning btn-sm">Edit</a>
-        <a href="/delete_task_occurrence/<%= task_occurrence.id %>" class="btn btn-danger btn-sm" rel="nofollow">Delete</a>
+       <a href="/task_occurrences/<%= task_occurrence.id %>" class="btn btn-primary  btn-sm">Show</a>
+        <a href="/tasks/<%= task_occurrence.id %>/edit" class="btn btn-info  btn-sm">Edit</a>
+        <a href="/delete_task_occurrence/<%= task_occurrence.id %>" class="btn btn-danger  btn-sm" rel="nofollow">Delete</a>
       </td>
 
       <%else%>
@@ -182,7 +182,7 @@
       <td><%= task_occurrence.complete_date.try(:strftime, "%m/%d/%Y")%></td>-->
       <td>
         <a href="/task_occurrences/<%= task_occurrence.id %>" class="btn btn-primary  btn-sm">Show</a>
-        <a href="/task_occurrences/<%= task_occurrence.id %>/edit" class="btn btn-info  btn-sm">Edit</a>
+        <a href="/tasks/<%= task_occurrence.id %>/edit" class="btn btn-info  btn-sm">Edit</a>
         <a href="/delete_task_occurrence/<%= task_occurrence.id %>" class="btn btn-danger  btn-sm" rel="nofollow">Delete</a>
       </td>
 

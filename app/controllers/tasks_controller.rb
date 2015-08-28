@@ -42,6 +42,7 @@ class TasksController < ApplicationController
               @task_occurrence.task_next_num = num
        @task_occurrence.task_next_date = date
             @task_occurrence.complete = false
+            @task_occurrence.task_notes = @task.notes
        @task_occurrence.complete_date = 'nil'
        @task_occurrence.task_id = @task.id
        @task_occurrence.save
@@ -104,7 +105,7 @@ def update #
                         freq = @task.recurrence_frequency_period ##Daily, monthly, weekly
                         every = @task.recurrence_frequency_num ## Monthly every 3 Months
                         long = @task.recurrence_end_num ##number of occurrence
-                        date = @task.date
+                        date =  @task.date
                         while num < @task.recurrence_end_num do
                            @task_occurrence = TaskOccurrence.new
                            @task_occurrence.complete = 'false'
@@ -112,6 +113,7 @@ def update #
                            @task_occurrence.task_next_date = date
                            @task_occurrence.complete_date = 'nil'
                            @task_occurrence.task_id = @task.id
+                           @task_occurrence.task_notes = @task.notes
                                if  @task_occurrence.task_next_date < Time.now
                            else
                               @task_occurrence.save

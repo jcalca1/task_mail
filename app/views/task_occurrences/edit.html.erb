@@ -22,10 +22,8 @@
 
       <!-- Label and input for complete -->
       <dl class="dl-horizontal">
-       <dt>Task Name:</dt>
-       <dd><%= @task_occurrence.task.name %></dd>
-       <dt>Due Date:</dt>
-         <dd><%= @task_occurrence.task.name %></dd>
+              <dt>Due Date:</dt>
+         <dd><%= @task_occurrence.task_next_date.strftime("%m/%d/%Y") %></dd>
           <dt>Complete:</dt>
           <dd><% if @task_occurrence.complete == true %>
             Yes
@@ -34,15 +32,16 @@
             <% end %>
           </dd>
           <dt>Complete Date:</dt>
-          <dd><%= @task_occurrence.complete_date %></dd>
+          <dd></dd>
           <dt>Notes:</dt>
-          <dd>Need to add Notes field</dd>
+          <dd> <textarea id="task_notes" name="task_notes" placeholder="task_notes" class="form-control" rows="3"><%= @task_occurrence.task_notes %></textarea></dd>
 
           <div class="form-group">
             <label for="complete_date" class="control-label">
             </label>
             <input type="hidden" id="complete_date" name="complete_date" placeholder="" class="form-control" value="<%= @task_occurrence.complete_date %>">
           </div>
+<input type="hidden" id="task_next_date" name="task_next_date" placeholder="" class="form-control" value="<%= @task_occurrence.task_next_date %>">
 
           <div class="form-group">
             <label for="task_next_num" class="control-label">
