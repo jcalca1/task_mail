@@ -28,20 +28,16 @@ class TasksController < ApplicationController
       @task.recurrence_frequency_num = 1
       @task.recurrence_end_num = 1
     end
-
-
     @task.recurrence_end_period = params[:recurrence_end_period] ## not used
    @task.email_reminder_repeat = params[:email_reminder_repeat] ##not used
     @task.email_reminder_num = params[:email_reminder_num] ##not used
     @task.email_reminder = params[:email_reminder] ##not used
-
     if @task.save
       num = 0
       freq = @task.recurrence_frequency_period ##Daily, monthly, weekly
       every = @task.recurrence_frequency_num ## Monthly every 3 Months
       long = @task.recurrence_end_num ##number of occurrence
       date = @task.date
-
       while num < @task.recurrence_end_num do
         @task_occurrence = TaskOccurrence.new
         @task_occurrence.complete = 'false'
@@ -50,9 +46,7 @@ class TasksController < ApplicationController
         @task_occurrence.complete_date = 'nil'
         @task_occurrence.task_id = @task.id
         @task_occurrence.save
-
         num += 1
-
         if freq.to_s == "dailly"
           date += every.day
         elsif freq.to_s == "weekly"
@@ -63,18 +57,14 @@ class TasksController < ApplicationController
         date += every.year
       end
     end
-
     redirect_to "/tasks", :notice => "Task created successfully."
   else
     render 'new'
   end
-
 end
 
 def edit
   @task = Task.find(params[:id])
-
-
 end
 
 def update
@@ -91,18 +81,17 @@ def update
   @task.notes = params[:notes]
   @task.date = params[:date]
   @task.name = params[:name]
-
   if @task.save
-   @task_occurrence.task.each do |task_occurrence|
-    if task_occurrence.complete == false
+   @task.task_occurrences.each do |task_occurrence|
+    if task_occurrence.complete == false  #####
       task_occurrence.destroy
-    else
+    else ####
+
       num = 0
       freq = @task.recurrence_frequency_period ##Daily, monthly, weekly
       every = @task.recurrence_frequency_num ## Monthly every 3 Months
       long = @task.recurrence_end_num ##number of occurrence
       date = @task.date
-
       while num < @task.recurrence_end_num do
         @task_occurrence = TaskOccurrence.new
         @task_occurrence.complete = 'false'
@@ -110,10 +99,12 @@ def update
         @task_occurrence.task_next_date = date
         @task_occurrence.complete_date = 'nil'
         @task_occurrence.task_id = @task.id
-        @task_occurrence.save
+        if  @task_occurrence.task_next_date < Time.now
+        else
+          @task_occurrence.save
+        end
 
         num += 1
-
         if freq.to_s == "dailly"
           date += every.day
         elsif freq.to_s == "weekly"
@@ -123,21 +114,21 @@ def update
        elsif freq.to_s == "yearly"
         date += every.year
       end
-      end
     end
+    end ####
+
+  end
+  redirect_to "/tasks", :notice => "Task updated successfully."
+else
+ render 'edit'
+end
 end
 
-    redirect_to "/tasks", :notice => "Task updated successfully."
-  else
-    render 'edit'
-  end
-end
 
 def destroy
   @task = Task.find(params[:id])
-
   @task.destroy
-
   redirect_to "/tasks", :notice => "Task deleted."
 end
+
 end

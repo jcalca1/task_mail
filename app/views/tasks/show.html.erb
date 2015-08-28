@@ -55,6 +55,22 @@ date notes
 
         </ul>
     </dd>
+    <dt>Log:</dt>
+    <dd>
+      <ul class="list-group">
+        <% @task.task_occurrences.order("task_next_date ASC").each do |task_occurrence| %>
+        <% if task_occurrence.complete == true %>
+        <li class="list-group-item">Completed on <%= task_occurrence.complete_date.strftime("%m/%d/%Y") %>  <a href="/task_occurrences/<%= task_occurrence.id %>" class="btn-primary"> Show </a>
+          <a href="/task_occurrences/<%= task_occurrence.id %>/edit" class="btn-warning"> Edit </a>
+          <a href="/delete_task_occurrence/<%= task_occurrence.id %>" class="btn-danger" rel="nofollow"> Delete </a></li>
+          <%else%>
+          <li class="list-group-item"><%= task_occurrence.task.name %> is due on <%= task_occurrence.task_next_date.strftime("%m/%d/%Y") %>  <a href="/task_occurrences/<%= task_occurrence.id %>" class="fa fa-eye"> </a>
+            <a href="/task_occurrences/<%= task_occurrence.id %>/edit" class="fa fa-pencil"></a>
+            <a href="/delete_task_occurrence/<%= task_occurrence.id %>" rel="nofollow" class="fa fa-trash"></a></li>
+            <% end %>
+            <% end %>
+          </ul>
+        </dd>
 
     </dl>
 

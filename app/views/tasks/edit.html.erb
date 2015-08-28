@@ -9,9 +9,9 @@
 <% end %>
 
 <div class="page-header">
-  <h3>Edit Task #<%= @task.id %></h3>
+  <h3>Edit Task - <%= @task.name %></h3>
 </div>
-
+<i style="color:#FF0000">note that this will remove all non-completed tasks</i>
 <div class="row">
   <div class="col-md-12">
     <form action="/update_task/<%= @task.id %>" method="post">
@@ -38,7 +38,7 @@
     </label>
     <div class='input-group date' id='datetimepicker1'>
 
-      <input type='text' class="form-control" name="date" id="date" placeholder="Date" value="<%= @task.date %>">
+      <input type='text' class="form-control" name="date" id="date" placeholder="<%= @task.date %>" value="<%= @task.date %>">
       <span class="input-group-addon">
         <span class="glyphicon glyphicon-calendar"></span>
       </span>
@@ -141,3 +141,9 @@
   </form>
 </div>
 </div>
+
+<script type="text/javascript">
+  $(function () {
+    $('#datetimepicker1').datetimepicker();
+  });
+</script>

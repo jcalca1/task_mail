@@ -38,7 +38,7 @@ def update
     if @task_occurrence.save
       redirect_to "/task_occurrences" , :notice => "Task occurrence updated successfully."
     else
- render 'done'
+ render 'udpate'
     end
   end
 
