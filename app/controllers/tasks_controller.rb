@@ -39,9 +39,9 @@ class TasksController < ApplicationController
       date = @task.date
       while num < @task.recurrence_end_num do
        @task_occurrence = TaskOccurrence.new
-        @task_occurrence.user_id = params[:x]
-       @task_occurrence.task_next_num = num
+              @task_occurrence.task_next_num = num
        @task_occurrence.task_next_date = date
+            @task_occurrence.complete = false
        @task_occurrence.complete_date = 'nil'
        @task_occurrence.task_id = @task.id
        @task_occurrence.save
@@ -107,7 +107,6 @@ def update #
                         date = @task.date
                         while num < @task.recurrence_end_num do
                            @task_occurrence = TaskOccurrence.new
-                            @task_occurrence.user_id = current_user.id
                            @task_occurrence.complete = 'false'
                            @task_occurrence.task_next_num = num
                            @task_occurrence.task_next_date = date
