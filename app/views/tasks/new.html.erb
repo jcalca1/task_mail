@@ -52,11 +52,11 @@
     <div class="control-group">
     <div class="controls">
 
-        <input type="checkbox" data-toggle="collapse" data-target="#demo" id="recurrence" name="recurrence" value="1" <%= "checked" if @task.recurrence %>> Recurrence
+        <input type="checkbox" data-toggle="collapse" data-target="#demo" id="recurrence" name="recurrence" value="" <%= "checked" if @task.recurrence %>> Recurrence
 
     </div>
     <div class="controls">
-      <div id="demo" class="collapse out">
+      <div id="demo" class="collapse">
 
         <div class="form-group">
           <label for="recurrence_frequency_period" class="control-label">
@@ -86,24 +86,17 @@
           <label for="recurrence_end_num" class="control-label">
             For
           </label>
-
           <input type="text" id="recurrence_end_num" name="recurrence_end_num" placeholder="Recurrence end num" class="form-control" value="<%= @task.recurrence_end_num %>">
         </div>
-
       </div>
     </div>
   </div>
-
-
-
-
 
 <!-- Label and input for notes -->
 <div class="form-group">
   <label for="notes" class="control-label">
     Notes
   </label>
-
   <textarea id="notes" name="notes" placeholder="Notes" class="form-control" rows="3"><%= @task.notes %></textarea>
 </div>
 
