@@ -45,6 +45,7 @@ class TasksController < ApplicationController
        @task_occurrence.task_next_date = date
        @task_occurrence.complete_date = 'nil'
        @task_occurrence.task_id = @task.id
+       @task_occurrence.task_notes = @task.notes
        @task_occurrence.save
        num += 1
        if freq.to_s == "dailly"
@@ -77,6 +78,7 @@ def update #
    @task.notes = params[:notes]
    @task.date = Chronic.parse(params[:date])
    @task.name = params[:name]
+
    @task.recurrence = params[:recurrence]
    if @task.recurrence == true
           @task.recurrence_frequency_num = params[:recurrence_frequency_num]
@@ -111,7 +113,8 @@ def update #
                            @task_occurrence = TaskOccurrence.new
                            @task_occurrence.complete = 'false'
                            @task_occurrence.task_next_num = num
-                           @task_occurrence.task_next_date = date
+                           @task_occurrence.task_notes = @task.notes
+                           @task_occurrence.task_next_date =  date
                            @task_occurrence.complete_date = 'nil'
                            @task_occurrence.task_id = @task.id
                                if  @task_occurrence.task_next_date < Time.now
