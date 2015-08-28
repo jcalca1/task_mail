@@ -1,6 +1,6 @@
 class TaskOccurrencesController < ApplicationController
   def index
-    @task_occurrences = TaskOccurrence.all
+    @task_occurrences = current_user.task_occurrences
   end
 
   def show
@@ -15,7 +15,7 @@ class TaskOccurrencesController < ApplicationController
     @task_occurrence = TaskOccurrence.new
     @task_occurrence.complete = params[:complete]
     @task_occurrence.task_id = params[:task_id]
-
+ @task_occurrence.user_id = params[:user_id]
     if @task_occurrence.save
       redirect_to "/task_occurrences", :notice => "Task occurrence created successfully."
     else
