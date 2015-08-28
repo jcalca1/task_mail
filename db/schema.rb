@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150823223427) do
+ActiveRecord::Schema.define(version: 20150828064640) do
 
   create_table "task_occurrences", force: :cascade do |t|
     t.boolean  "complete"
@@ -22,6 +22,7 @@ ActiveRecord::Schema.define(version: 20150823223427) do
     t.integer  "task_next_num"
     t.datetime "task_next_date"
     t.datetime "complete_date"
+    t.text     "task_notes"
   end
 
   create_table "tasks", force: :cascade do |t|
