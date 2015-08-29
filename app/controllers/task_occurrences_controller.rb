@@ -1,6 +1,9 @@
 class TaskOccurrencesController < ApplicationController
+
+
+
   def index
-    @task_occurrences = TaskOccurrence.all
+     @task_occurrences = current_user.task_occurrences
   end
 
   def show

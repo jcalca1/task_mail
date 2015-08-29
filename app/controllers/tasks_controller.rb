@@ -1,6 +1,6 @@
 class TasksController < ApplicationController
    def index
-      @tasks = Task.all
+      @tasks =  Task.all  ##Task.task_occurrence.where(user_id => current_user.id)
  end
 
  def show
