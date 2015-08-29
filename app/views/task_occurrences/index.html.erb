@@ -166,7 +166,7 @@
         <% end %>
       </td>
       <td><%= Task.find_by(:id => task_occurrence.task_id).name %></td>
-      <td><%= task_occurrence.user.email %>)   (<%= task_occurrence.task_next_date.strftime("%m/%d/%Y") %></td>
+      <td><%= task_occurrence.task_next_date.strftime("%m/%d/%Y") %></td>
       <td><% if task_occurrence.complete == false  && task_occurrence.task_next_date <= Time.now%>
         <%= time_ago_in_words(task_occurrence.task_next_date) %> Past Due
         <% elsif  task_occurrence.complete == false %>
