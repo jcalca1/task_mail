@@ -13,7 +13,7 @@
 </div>
 
 <div class="row">
-  <div class="col-md-12">
+  <div class="col-md-6 col-md-offset-3">
     <form action="/create_task" method="post">
       <!-- Hidden input for authenticity token to protect from forgery -->
       <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
@@ -23,7 +23,7 @@
 
       <!-- Label and input for name -->
       <div class="form-group">
-       <label for="name" class="control-label">Name</label>
+       <label for="name" class="control-label">Name:</label>
        <input type="text" id="name" name="name" placeholder="Name" class="form-control" value="<%= @task.name %>">
      </div>
 
@@ -75,16 +75,27 @@
             Every:
           </label>
 
-          <input type="text" id="recurrence_frequency_num" name="recurrence_frequency_num" placeholder="Recurrence frequency num" class="form-control" value="<%= @task.recurrence_frequency_num %>">
+          <input type="text" id="recurrence_frequency_num" name="recurrence_frequency_num" placeholder="How often" class="form-control" value="1">
         </div>
 
         <!-- Label and input for recurrence_end_num -->
-        <div class="form-group">
+        <div class="control-group">
+    <div class="controls">
+        <input type="checkbox" data-toggle="collapse" data-target="#indefinite" id="" name="" value="1" checked > Indefinite
+    </div>
+    <div class="controls">
+      <div id="indefinite" class="collapse">
+                   <div class="form-group">
           <label for="recurrence_end_num" class="control-label">
-            For
+            Recurring:
           </label>
-          <input type="text" id="recurrence_end_num" name="recurrence_end_num" placeholder="Recurrence end num" class="form-control" value="<%= @task.recurrence_end_num %>">
+          <input type="text" id="recurrence_end_num" name="recurrence_end_num" placeholder="How many times?" class="form-control" value="100">
         </div>
+      </div>
+    </div>
+  </div>
+
+
       </div>
     </div>
   </div>
@@ -92,7 +103,7 @@
 <!-- Label and input for notes -->
 <div class="form-group">
   <label for="notes" class="control-label">
-    Notes
+    Notes:
   </label>
   <textarea id="notes" name="notes" placeholder="Notes" class="form-control" rows="3"><%= @task.notes %></textarea>
 </div>
@@ -152,3 +163,6 @@
     $('#datetimepicker1').datetimepicker();
   });
 </script>
+
+
+

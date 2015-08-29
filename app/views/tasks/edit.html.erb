@@ -13,7 +13,7 @@
 </div>
 <i style="color:#FF0000">note: must re-enter date. non-completed tasks will be erased</i>
 <div class="row">
-  <div class="col-md-12">
+  <div class="col-md-6 col-md-offset-3">
     <form action="/update_task/<%= @task.id %>" method="post">
       <!-- Hidden input for authenticity token to protect from forgery -->
       <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">

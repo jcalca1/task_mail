@@ -1,6 +1,6 @@
 class TasksController < ApplicationController
    def index
-      @tasks =  Task.all  ##Task.task_occurrence.where(user_id => current_user.id)
+      @tasks = Task.all    ###Task.task_occurrences.where(user_id => current_user.id)
  end
 
  def show
@@ -48,7 +48,7 @@ class TasksController < ApplicationController
        @task_occurrence.user_id = params[:user_id]
        @task_occurrence.save
        num += 1
-       if freq.to_s == "dailly"
+       if freq.to_s == "daily"
           date += every.day
      elsif freq.to_s == "weekly"
           date += every.week
